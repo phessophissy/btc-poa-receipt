@@ -1,4 +1,4 @@
-import { storeReceipt } from './_lib/db.js';
+import { storeReceipt } from '../_lib/db.js';
 
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || 'dev-webhook-secret';
 
