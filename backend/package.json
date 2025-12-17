@@ -1,0 +1,15 @@
+{
+  "name": "btc-poa-receipt-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Bitcoin Proof-of-Action receipts",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

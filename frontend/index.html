@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Proof-of-Action Receipt</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚡ Bitcoin Proof-of-Action</h1>
+      <p class="subtitle">Create Bitcoin-anchored, timestamped receipts on Stacks</p>
+    </header>
+
+    <main>
+      <!-- Wallet Connection -->
+      <section id="wallet-section" class="card">
+        <h2>1. Connect Wallet</h2>
+        <div id="wallet-status">
+          <button id="connect-btn" class="btn btn-primary">Connect Stacks Wallet</button>
+        </div>
+        <div id="wallet-info" class="hidden">
+          <p><strong>Address:</strong> <span id="user-address"></span></p>
+          <button id="disconnect-btn" class="btn btn-secondary">Disconnect</button>
+        </div>
+      </section>
+
+      <!-- Proof Submission -->
+      <section id="submit-section" class="card hidden">
+        <h2>2. Submit Proof</h2>
+        <form id="proof-form">
+          <div class="form-group">
+            <label for="content">Content to Hash</label>
+            <textarea 
+              id="content" 
+              placeholder="Enter text, document content, or any data to create a proof..."
+              rows="4"
+              required
+            ></textarea>
+            <small>This content will be hashed locally. Only the hash is stored on-chain.</small>
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Description (optional, off-chain)</label>
+            <input 
+              type="text" 
+              id="description" 
+              placeholder="Brief description for your reference"
+            />
+          </div>
+
+          <div id="hash-preview" class="hidden">
+            <label>SHA-256 Hash:</label>
+            <code id="computed-hash"></code>
+          </div>
+
+          <div class="fee-display">
+            <span>Submission Fee:</span>
+            <strong id="fee-amount">0.001 STX</strong>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn-primary" disabled>
+            Submit Proof to Blockchain
+          </button>
+        </form>
+      </section>
+
+      <!-- Transaction Status -->
+      <section id="status-section" class="card hidden">
+        <h2>3. Transaction Status</h2>
+        <div id="tx-status">
+          <div class="spinner"></div>
+          <p id="status-message">Waiting for wallet confirmation...</p>
+        </div>
+        <div id="tx-result" class="hidden">
+          <p><strong>Transaction ID:</strong></p>
+          <a id="tx-link" href="" target="_blank" class="tx-id"></a>
+        </div>
+      </section>
+
+      <!-- Receipt Display -->
+      <section id="receipt-section" class="card hidden">
+        <h2>✅ Receipt Generated</h2>
+        <div id="receipt-content">
+          <div class="receipt-field">
+            <label>Receipt ID:</label>
+            <span id="receipt-id"></span>
+          </div>
+          <div class="receipt-field">
+            <label>Proof Hash:</label>
+            <code id="receipt-hash"></code>
+          </div>
+          <div class="receipt-field">
+            <label>Block Height:</label>
+            <span id="receipt-block"></span>
+          </div>
+          <div class="receipt-field">
+            <label>Timestamp:</label>
+            <span id="receipt-timestamp"></span>
+          </div>
+          <div class="receipt-field">
+            <label>Public Receipt URL:</label>
+            <a id="receipt-url" href="" target="_blank"></a>
+          </div>
+        </div>
+        <button id="new-proof-btn" class="btn btn-secondary">Submit Another Proof</button>
+      </section>
+
+      <!-- Verification Section -->
+      <section id="verify-section" class="card">
+        <h2>🔍 Verify a Proof</h2>
+        <form id="verify-form">
+          <div class="form-group">
+            <label for="verify-content">Content to Verify</label>
+            <textarea 
+              id="verify-content" 
+              placeholder="Paste the original content to verify..."
+              rows="3"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-secondary">Verify Proof</button>
+        </form>
+        <div id="verify-result" class="hidden"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Powered by <a href="https://stacks.co" target="_blank">Stacks</a> — Bitcoin L2</p>
+    </footer>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

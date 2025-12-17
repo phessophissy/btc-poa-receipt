@@ -1,0 +1,11 @@
+[project]
+name = "btc-poa-receipt"
+description = "Bitcoin Proof-of-Action Receipt System"
+authors = []
+telemetry = false
+cache_dir = "./.cache"
+
+[contracts.proof-of-action]
+path = "contracts/proof-of-action.clar"
+clarity_version = 2
+epoch = 2.5
