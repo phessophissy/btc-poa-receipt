@@ -2,29 +2,49 @@ import { storeReceipt } from '../_lib/db.js';
 
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || 'dev-webhook-secret';
 
-// Extract print event data from Chainhook payload
+// Extract print event data from Chainhook payload (handles multiple formats)
 function extractProofEvent(payload) {
   try {
+    // Log payload structure for debugging
+    console.log('Webhook payload:', JSON.stringify(payload).slice(0, 500));
+    
     const apply = payload.apply || [];
     
     for (const block of apply) {
       const transactions = block.transactions || [];
       
       for (const tx of transactions) {
-        const events = tx.metadata?.receipt?.events || [];
+        // Try multiple event paths (Hiro Platform format varies)
+        const eventSources = [
+          tx.metadata?.receipt?.events,
+          tx.operations,
+          tx.events
+        ].filter(Boolean);
         
-        for (const event of events) {
-          if (event.type === 'SmartContractEvent' || event.type === 'print_event') {
-            const data = event.data?.value || event.contract_event?.value;
+        for (const events of eventSources) {
+          for (const event of events) {
+            // Handle different event type names
+            const isContractEvent = 
+              event.type === 'SmartContractEvent' || 
+              event.type === 'print_event' ||
+              event.type === 'contract_event';
             
-            if (data && data.event === 'proof-submitted') {
-              return {
-                txid: tx.transaction_identifier?.hash || tx.txid,
-                userAddress: data.user,
-                proofHash: data.hash,
-                blockHeight: data['block-height'] || block.block_identifier?.index,
-                submissionId: data['submission-id']
-              };
+            if (isContractEvent) {
+              // Try different data paths
+              const data = 
+                event.data?.value || 
+                event.contract_event?.value ||
+                event.value;
+              
+              if (data && data.event === 'proof-submitted') {
+                return {
+                  txid: tx.transaction_identifier?.hash || tx.tx_id || tx.txid,
+                  userAddress: data.user,
+                  proofHash: data.hash,
+                  blockHeight: data['block-height'] || block.block_identifier?.index || block.index,
+                  submissionId: data['submission-id']
+                };
+              }
             }
           }
         }

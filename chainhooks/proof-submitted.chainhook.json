@@ -12,7 +12,7 @@
       },
       "then_that": {
         "http_post": {
-          "url": "https://btc-poa-phessophissys-projects.vercel.app/api/webhook/proof",
+          "url": "https://btc-poa.vercel.app/api/webhook/proof",
           "authorization_header": "Bearer btc-poa"
         }
       },
