@@ -16,3 +16,4 @@ settings/*.toml
 # Keep example settings
 !settings/*.example.toml
 .vercel
+generate_commits.sh
