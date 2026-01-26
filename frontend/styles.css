@@ -879,3 +879,4 @@ section:nth-child(5) { animation-delay: 0.4s; }
 /* Commit 4 - style: add radial gold glow to background gradient */
 /* Commit 5 - refactor: extract gold color palette as CSS variables */
 /* Commit 6 - style: add premium box shadow with gold glow */
+/* Commit 7 - style: implement gold gradient text for headings */
