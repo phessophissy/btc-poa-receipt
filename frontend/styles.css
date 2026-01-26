@@ -896,3 +896,4 @@ section:nth-child(5) { animation-delay: 0.4s; }
 /* Commit 2 - style: enhance header with bitcoin icon rotation animation */
 /* Commit 3 - style: implement floating gold dust particles overlay */
 /* Commit 4 - style: add radial gold glow to background gradient */
+/* Commit 5 - refactor: extract gold color palette as CSS variables */
