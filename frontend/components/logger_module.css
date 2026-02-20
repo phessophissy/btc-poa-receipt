@@ -1,0 +1,64 @@
+/* logger module Component Styles */
+/* BTC Proof-of-Action Receipt System */
+
+.logger-module-container {
+  padding: var(--spacing-lg, 1.5rem);
+  background: linear-gradient(135deg, var(--surface, #1a1a1a) 0%, var(--background-secondary, #121212) 100%);
+  border: 1px solid var(--border-color, rgba(251, 191, 36, 0.2));
+  border-radius: var(--radius-lg, 20px);
+  margin-bottom: var(--spacing-xl, 2rem);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logger-module-container:hover {
+  border-color: var(--border-gold, rgba(251, 191, 36, 0.4));
+  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.3);
+  transform: translateY(-2px);
+}
+
+.logger-module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md, 1rem);
+  padding-bottom: var(--spacing-sm, 0.5rem);
+  border-bottom: 1px solid var(--border-color, rgba(251, 191, 36, 0.2));
+}
+
+.logger-module-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logger-module-content {
+  display: grid;
+  gap: var(--spacing-md, 1rem);
+}
+
+.logger-module-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+@media (max-width: 768px) {
+  .logger-module-container {
+    padding: var(--spacing-md, 1rem);
+  }
+  .logger-module-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
