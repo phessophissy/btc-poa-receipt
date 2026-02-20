@@ -1,4 +1,4 @@
-# add rate limiting to API endpoints
+# add rate limiting tests
 
 ## Overview
 
