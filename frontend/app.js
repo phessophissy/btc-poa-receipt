@@ -290,8 +290,8 @@ async function verifyProof(e) {
         <strong>✅ Proof Verified!</strong><br>
         Block Height: ${result.receipt.block_height}<br>
         Timestamp: ${new Date(result.receipt.timestamp).toLocaleString()}<br>
-        Sender: ${result.receipt.sender}<br>
-        <a href="${CONFIG.backendUrl}/api/receipt/${result.receipt.id}" target="_blank">View Receipt</a>
+        Sender: ${result.receipt.user_address}<br>
+        <a href="${CONFIG.backendUrl}/receipt/${result.receipt.id}" target="_blank">View Receipt</a>
       `;
     } else {
       elements.verifyResult.classList.add('not-found');
